@@ -1,3 +1,8 @@
+""" This file is for the ship update only 
+    Kennedy Walker
+    Date: 10/25/2026 """
+
+
 import pygame
 from typing import TYPE_CHECKING
 
@@ -14,7 +19,7 @@ class Ship:
 
         self.image = pygame.image.load(self.settings.ship_file)
         self.image = pygame.transform.scale(self.image,
-                                            (se;f.settings.ship_w, self.settings.ship_h)
+                                            (self.settings.ship_w, self.settings.ship_h)
         )
         self.rect = self.image.get_rect()
         self.rect.midbottom = self.screen_rect.midbottom
@@ -29,7 +34,7 @@ class Ship:
             self.x += temp_speed
         if self.moving_left:
             self.x -= temp_speed
-            
+
         self.rect.x = self.x
 
     def draw(self)-> None:
