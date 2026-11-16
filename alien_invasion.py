@@ -26,6 +26,7 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.laser_sound = pygame.mixer.Sound(self.settings.laser_sound_file)
         self.bg_image = pygame.image.load(self.settings.bg_file)
         self.bg_image = pygame.transform.scale(
         self.bg_image,
@@ -71,6 +72,7 @@ class AlienInvasion:
         """Create a new laser."""
         new_bullet = Bullet(self)
         self.bullets.add(new_bullet)
+        self.laser_sound.play()
 
     def _check_keyup_event(self, event) -> None:
         if event.key == pygame.K_RIGHT:

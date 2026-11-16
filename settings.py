@@ -8,7 +8,8 @@ class Settings:
         self.bg_file = Path.cwd() / 'Assets' / 'images'
        
         self.image_folder = Path.cwd() / 'Assets' / 'images'
-
+        self.sound_folder = Path.cwd() / 'Assets' / 'sound'
+        self.laser_sound_file = self.sound_folder / 'laser.mp3'
         
         self.bg_file = self.image_folder / 'Starbasesnow.png'
 
