@@ -9,13 +9,12 @@ Date 10/25/2026
 import sys
 import pygame
 from settings import Settings
-from ship import Ship  # FIX: added Ship import
+from ship import Ship  
 
 
 class AlienInvasion:
 
-    def __init__(self) -> None:  # FIX: corrected None
-        pygame.init()
+    def __init__(self) -> None: 
         self.settings = Settings()
         self.screen = pygame.display.set_mode(
             (self.settings.screen_w, self.settings.screen_h)
@@ -25,6 +24,11 @@ class AlienInvasion:
         self.running = True
         self.clock = pygame.time.Clock()
         self.ship = Ship(self)
+        self.bg_image = pygame.image.load(self.settings.bg_file)
+        self.bg_image = pygame.transform.scale(
+        self.bg_image,
+        (self.settings.screen_w, self.settings.screen_h)
+)
 
     def run_game(self) -> None:
         # Game Loop
@@ -40,7 +44,7 @@ class AlienInvasion:
                     self._check_keyup_event(event)
 
             self.ship.update()
-            self.screen.fill((0, 0, 0))
+            self.screen.blit(self.bg_image, (0, 0))
             self.ship.draw()
 
             pygame.display.flip()  # FIX: corrected indentation

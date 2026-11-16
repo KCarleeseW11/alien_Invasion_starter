@@ -10,7 +10,7 @@ class Settings:
         self.image_folder = Path.cwd() / 'Assets' / 'images'
 
         
-        self.bg_file = self.image_folder / 'background.png'
+        self.bg_file = self.image_folder / 'Starbasesnow.png'
 
        
         self.ship_file = self.image_folder / 'ship2(no bg).png'
