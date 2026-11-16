@@ -28,7 +28,7 @@ class Ship:
         self.x = float(self.rect.x)
 
     def update(self):
-        #updating the position of ship
+        
         temp_speed = 5
         if self.moving_right:
             self.x += temp_speed

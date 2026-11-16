@@ -10,6 +10,7 @@ import sys
 import pygame
 from settings import Settings
 from ship import Ship  
+from bullet import Bullet
 
 
 class AlienInvasion:
@@ -24,6 +25,7 @@ class AlienInvasion:
         self.running = True
         self.clock = pygame.time.Clock()
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
         self.bg_image = pygame.image.load(self.settings.bg_file)
         self.bg_image = pygame.transform.scale(
         self.bg_image,
@@ -44,19 +46,31 @@ class AlienInvasion:
                     self._check_keyup_event(event)
 
             self.ship.update()
+            self.bullets.update()
             self.screen.blit(self.bg_image, (0, 0))
             self.ship.draw()
 
-            pygame.display.flip()  # FIX: corrected indentation
+            for bullet in self.bullets.sprites():
+                bullet.draw_bullet()
+
+
+            pygame.display.flip() 
             self.clock.tick(self.settings.FPS)
 
     def _check_keydown_event(self, event) -> None:
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
-            self.ship.moving_left = True  # FIX: self.ship, not self.event.ship
+            self.ship.moving_left = True 
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()   
         elif event.key == pygame.K_q:
             self.running = False
+
+    def _fire_bullet(self):
+        """Create a new laser."""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
 
     def _check_keyup_event(self, event) -> None:
         if event.key == pygame.K_RIGHT:
